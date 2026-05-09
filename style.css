@@ -1,0 +1,355 @@
+/* Fysikkhjelpen MEK1400 — stilark */
+
+:root {
+  --bg: #f7f5f0;
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --line: #e2dfd6;
+  --accent: #2563eb;
+  --accent-hover: #1e40af;
+  --good: #15803d;
+  --good-bg: #dcfce7;
+  --bad: #b91c1c;
+  --bad-bg: #fee2e2;
+  --selected: #dbeafe;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+               Arial, "Liberation Sans", sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* === Top navigation === */
+.topbar {
+  background: var(--ink);
+  color: white;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.topbar .brand {
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+}
+.topbar .brand:hover { text-decoration: none; }
+.topbar nav {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.topbar nav a {
+  color: #d4d4d4;
+  font-size: 15px;
+}
+.topbar nav a:hover { color: white; text-decoration: none; }
+.topbar nav a.active { color: white; font-weight: 600; }
+
+/* === Layout === */
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+header.page-header {
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 18px;
+  margin-bottom: 28px;
+}
+header.page-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+header.page-header .subtitle {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.summary {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+
+/* === Chapter grid (homepage) === */
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.chapter-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  display: block;
+  color: var(--ink);
+  transition: border-color 0.12s, transform 0.12s;
+}
+.chapter-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.chapter-card .num {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.chapter-card .name {
+  font-weight: 600;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 4px;
+}
+.chapter-card .meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* === Section grouping === */
+.group-head {
+  font-size: 13px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 24px 0 10px;
+  font-weight: 600;
+}
+
+/* === Quiz pages === */
+.quiz-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.btn {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  transition: border-color 0.12s, background 0.12s;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+.btn.primary:hover { background: var(--accent-hover); }
+
+.score-panel {
+  position: sticky;
+  top: 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.score-panel .stat {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.score-panel .stat .lbl {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.score-panel .stat .val {
+  font-size: 20px;
+  font-weight: 600;
+}
+.score-panel .stat .val.good { color: var(--good); }
+.score-panel .stat .val.bad { color: var(--bad); }
+.progress-bar {
+  flex: 1;
+  min-width: 120px;
+  height: 6px;
+  background: var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-bar > div {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.question {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+.question .num {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.question .text {
+  font-size: 17px;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.options { display: flex; flex-direction: column; gap: 6px; }
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  background: white;
+  transition: border-color 0.12s, background 0.12s;
+  user-select: none;
+}
+.opt:hover { border-color: var(--accent); background: #f9f9f6; }
+.opt .letter {
+  font-weight: 600;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.opt .text { flex: 1; }
+.opt.selected {
+  border-color: var(--accent);
+  background: var(--selected);
+}
+.opt.correct {
+  border-color: var(--good);
+  background: var(--good-bg);
+}
+.opt.wrong {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+}
+
+.feedback {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  border-left: 4px solid var(--accent);
+  background: #f1f5f9;
+  font-size: 15px;
+}
+.feedback.correct {
+  border-left-color: var(--good);
+  background: var(--good-bg);
+}
+.feedback.correct .verdict { color: var(--good); }
+.feedback.wrong {
+  border-left-color: var(--bad);
+  background: var(--bad-bg);
+}
+.feedback.wrong .verdict { color: var(--bad); }
+.feedback .verdict {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* Chapter navigation footer */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.chapter-nav a {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 16px;
+  color: var(--ink);
+  font-size: 14px;
+  transition: border-color 0.12s;
+}
+.chapter-nav a:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* Footer */
+footer.site-footer {
+  margin-top: 50px;
+  padding: 28px 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Content prose pages */
+.prose h2 {
+  font-size: 22px;
+  margin-top: 32px;
+  margin-bottom: 10px;
+}
+.prose h3 {
+  font-size: 18px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+.prose p, .prose ul, .prose ol {
+  margin-bottom: 14px;
+}
+.prose ul, .prose ol {
+  padding-left: 22px;
+}
+.prose li { margin-bottom: 4px; }
+.prose code {
+  background: #f1f1ec;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .wrap { padding: 18px 14px 60px; }
+  header.page-header h1 { font-size: 24px; }
+  .question { padding: 16px 18px; }
+  .topbar { padding: 12px 16px; }
+  .topbar nav { gap: 12px; font-size: 14px; }
+}
